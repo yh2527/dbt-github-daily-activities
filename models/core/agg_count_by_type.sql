@@ -1,6 +1,7 @@
 {{ config(materialized='table') }}
 
 select 
+    date(created_at) as creation_date,
     case when type = 'CreateEvent' then 'Create'
         when  type like '%Comment%' then 'Comment'
         when  type = 'ForkEvent' then 'Fork a Repo'    
@@ -20,5 +21,5 @@ select
     count(*) as count
     --round(count(*)/(sum(count(*)) over()), 4) as percentage
 from {{ ref('stg_git_daily_data') }}
-group by 1
-order by 2 desc
+group by 1, 2
+order by 1, 3 desc
