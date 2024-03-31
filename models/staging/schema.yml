@@ -2,7 +2,7 @@ version: 2
 
 sources:
   - name: staging
-    database: github-activities-412623
+    database: github-pipeline-demo # [CHANGE] GCP Project ID
     schema: git_activities_warehouse # [CHANGE] BigQuery dataset name
     
     tables:

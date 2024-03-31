@@ -9,4 +9,4 @@ from {{ ref('stg_git_daily_data') }}
 where type = 'ForkEvent' 
 group by 1, 2, 3
 order by 1, 2, 4 desc, 3
-limit 50
+limit 10
