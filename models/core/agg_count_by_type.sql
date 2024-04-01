@@ -23,3 +23,4 @@ select
 from {{ ref('stg_git_daily_data') }}
 group by 1, 2
 order by 1, 3 desc
+limit 10
