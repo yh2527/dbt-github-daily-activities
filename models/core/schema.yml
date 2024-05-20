@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: daily_count_trend
+    description: "This model aggregates data by creation_date and computes the daily count."
+    config:
+      materialized: incremental
+    columns:
+      - name: creation_date
+        description: "The date when the data was created."
+      - name: daily_count
+        description: "The aggregated count of events or items for each creation_date."
