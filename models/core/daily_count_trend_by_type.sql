@@ -1,13 +1,11 @@
 {{
     config(
-        materialized='incremental',
-        unique_key='creation_date'
+        materialized='incremental'
     )
 }}
 
 select
-    creation_date,
-    SUM(count) as daily_count
+    *
 from {{ ref('agg_total_count_by_type') }}
 
 {% if is_incremental() %}
@@ -17,5 +15,3 @@ from {{ ref('agg_total_count_by_type') }}
   where creation_date > (select coalesce(max(creation_date), '1900-01-01') from {{ this }})
 
 {% endif %}
-
-group by 1
